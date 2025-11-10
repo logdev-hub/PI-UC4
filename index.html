@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Integrador UC4 - Montagem, Instalação e Manutenção de Computadores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #1a3a52;
+            --secondary-color: #2980b9;
+            --light-bg: #ecf0f1;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .card {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .nav-tabs .nav-link {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .nav-tabs .nav-link.active {
+            background-color: #2a2a2a;
+            color: #2980b9;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            margin: 0.5rem 0 0 0;
+        }
+
+        .nav-tabs {
+            border-bottom: 2px solid var(--secondary-color);
+            margin-top: 2rem;
+        }
+
+        .nav-tabs .nav-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            border: none;
+            padding: 1rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tabs .nav-link:hover {
+            background-color: rgba(41, 128, 185, 0.1);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .nav-tabs .nav-link.active {
+            background-color: white;
+            color: var(--secondary-color);
+            border-radius: 8px 8px 0 0;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            font-weight: bold;
+            border-radius: 12px 12px 0 0 !important;
+        }
+
+        .emoji-icon {
+            font-size: 2rem;
+            margin-right: 0.5rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 2rem);
+            background-color: var(--secondary-color);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .progress-container {
+            margin: 2rem 0;
+        }
+
+        .checklist-item {
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .checklist-item:hover {
+            background-color: rgba(41, 128, 185, 0.05);
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 1rem;
+            cursor: pointer;
+        }
+
+        .checklist-item.checked {
+            background-color: rgba(46, 204, 113, 0.1);
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .btn-custom {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .dica-card {
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            background-color: white;
+        }
+
+        body.dark-mode .dica-card {
+            background-color: #2a2a2a;
+        }
+
+        .dica-card.critica {
+            border-left-color: #e74c3c;
+            background-color: rgba(231, 76, 60, 0.05);
+        }
+
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .stats-card {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stats-card h3 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .stats-card p {
+            margin: 0.5rem 0 0 0;
+            font-size: 1rem;
+        }
+
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-box {
+            margin-bottom: 1.5rem;
+        }
+
+        .table-responsive {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+        body.dark-mode .table {
+            color: #e0e0e0;
+        }
+
+        .toast-container {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 1050;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .nav-tabs .nav-link {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .emoji-icon {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle" title="Alternar modo escuro">
+        <i class="bi bi-moon-fill"></i>
+    </button>
+
+    <!-- Toast Container -->
+    <div class="toast-container"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>💻 Projeto Integrador UC4</h1>
+            <p>Montagem, Instalação e Manutenção de Computadores</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container my-4">
+        <!-- Navigation Tabs -->
+        <ul class="nav nav-tabs flex-wrap" id="mainTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="proposta-tab" data-bs-toggle="tab" data-bs-target="#proposta" type="button" role="tab">🎯 Proposta</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="exemplos-tab" data-bs-toggle="tab" data-bs-target="#exemplos" type="button" role="tab">💼 Exemplos</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="problematica-tab" data-bs-toggle="tab" data-bs-target="#problematica" type="button" role="tab">🔍 Problemática</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="sequencia-tab" data-bs-toggle="tab" data-bs-target="#sequencia" type="button" role="tab">📋 Desenvolvimento</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="checklist-tab" data-bs-toggle="tab" data-bs-target="#checklist" type="button" role="tab">✅ Checklist</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="dicas-tab" data-bs-toggle="tab" data-bs-target="#dicas" type="button" role="tab">💡 Dicas</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="resumo-tab" data-bs-toggle="tab" data-bs-target="#resumo" type="button" role="tab">📊 Resumo</button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content mt-4" id="mainTabsContent">
+            <!-- ABA 1: PROPOSTA -->
+            <div class="tab-pane fade show active" id="proposta" role="tabpanel">
+                <div class="row fade-in">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>🎯 O que é o Projeto Integrador?</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="lead">O Projeto Integrador é a consolidação prática de competências desenvolvidas nas UCs 1, 2 e 3, onde você aplicará seus conhecimentos em um contexto real de mercado.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <span class="emoji-icon">🔧</span>
+                                <h5>Montagem</h5>
+                                <p>Aplicar conhecimentos técnicos de montagem de computadores</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <span class="emoji-icon">💾</span>
+                                <h5>Instalação</h5>
+                                <p>Instalar e configurar sistemas operacionais</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <span class="emoji-icon">✅</span>
+                                <h5>Testes</h5>
+                                <p>Realizar testes de hardware e software</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <span class="emoji-icon">📄</span>
+                                <h5>Documentação</h5>
+                                <p>Documentar procedimentos técnicos profissionalmente</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <span class="emoji-icon">👥</span>
+                                <h5>Trabalho em Equipe</h5>
+                                <p>Trabalhar em equipe e demonstrar postura profissional</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>📅 Fases Principais do Projeto</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <h5>📋 Planejamento</h5>
+                                        <p>Análise de requisitos, pesquisa de componentes e elaboração de orçamento</p>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <h5>🔧 Montagem</h5>
+                                        <p>Montagem física dos computadores com aplicação de boas práticas</p>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <h5>💾 Instalação</h5>
+                                        <p>Instalação de sistemas operacionais, drivers e aplicativos</p>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <h5>✅ Testes</h5>
+                                        <p>Testes completos de hardware, software e validação</p>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <h5>📄 Documentação</h5>
+                                        <p>Elaboração de relatórios técnicos e manuais</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>🎓 Competências Mobilizadas</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="alert alert-info">
+                                            <strong>UC1:</strong> Montagem de Hardware
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="alert alert-warning">
+                                            <strong>UC2:</strong> Instalação de Sistemas
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="alert alert-success">
+                                            <strong>UC3:</strong> Testes e Manutenção
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABA 2: EXEMPLOS DE PROJETOS -->
+            <div class="tab-pane fade" id="exemplos" role="tabpanel">
+                <div class="row fade-in">
+                    <div class="col-12">
+                        <h2 class="mb-4">💼 Exemplos Práticos de Projetos</h2>
+                    </div>
+                </div>
+
+                <!-- Exemplo 1: Clínica Médica -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h4>🏥 Clínica Médica Vida Plena</h4>
+                                <button class="btn btn-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#clinicaDetails">
+                                    <i class="bi bi-chevron-down"></i>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>Contexto:</strong> Clínica em Guarulhos com 15 funcionários e computadores obsoletos prejudicando produtividade</p>
+                                <div class="collapse show" id="clinicaDetails">
+                                    <hr>
+                                    <h5>🎯 Objetivos</h5>
+                                    <ul>
+                                        <li>Montar 8 computadores clientes modernos</li>
+                                        <li>Montar 1 servidor local para backup</li>
+                                        <li>Garantir segurança e conformidade com LGPD</li>
+                                    </ul>
+
+                                    <h5 class="mt-3">💻 Especificações - Computador Cliente</h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <tbody>
+                                                <tr><td><strong>Processador</strong></td><td>Intel Core i5 10400F</td></tr>
+                                                <tr><td><strong>Placa-Mãe</strong></td><td>Gigabyte H410M H</td></tr>
+                                                <tr><td><strong>Memória RAM</strong></td><td>16GB DDR4</td></tr>
+                                                <tr><td><strong>Armazenamento</strong></td><td>SSD 480GB + HD 1TB</td></tr>
+                                                <tr><td><strong>Periféricos</strong></td><td>Monitor, teclado, mouse, webcam</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <h5 class="mt-3">🎓 Competências</h5>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-primary">UC1: Montagem</span>
+                                        <span class="badge bg-warning">UC2: Instalação</span>
+                                        <span class="badge bg-success">UC3: Testes e Manutenção</span>
+                                    </div>
+
+                                    <h5 class="mt-3">📅 Etapas (12 semanas)</h5>
+                                    <ol>
+                                        <li>Planejamento e análise (2 semanas)</li>
+                                        <li>Aquisição e inspeção (2 semanas)</li>
+                                        <li>Montagem de equipamentos (3 semanas)</li>
+                                        <li>Instalação de software (3 semanas)</li>
+                                        <li>Testes completos (1 semana)</li>
+                                        <li>Documentação e entrega (1 semana)</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exemplo 2: E-commerce -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h4>🛒 E-commerce VesteBem</h4>
+                                <button class="btn btn-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#ecommerceDetails">
+                                    <i class="bi bi-chevron-down"></i>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>Contexto:</strong> Startup home office que precisa estruturar infraestrutura profissional</p>
+                                <div class="collapse" id="ecommerceDetails">
+                                    <hr>
+                                    <h5>🎯 Objetivos</h5>
+                                    <ul>
+                                        <li>Montar 5 computadores diferenciados por função</li>
+                                        <li>Montar servidor NAS para backup centralizado</li>
+                                        <li>Padronizar e organizar operações</li>
+                                    </ul>
+
+                                    <h5 class="mt-3">💻 Estações de Trabalho</h5>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card mb-3">
+                                                <div class="card-body">
+                                                    <h6>🏢 Administração</h6>
+                                                    <p class="small">i5, 16GB RAM, SSD</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card mb-3">
+                                                <div class="card-body">
+                                                    <h6>📞 Atendimento (2 unidades)</h6>
+                                                    <p class="small">i3, 8GB RAM, SSD</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card mb-3">
+                                                <div class="card-body">
+                                                    <h6>📦 Estoque</h6>
+                                                    <p class="small">Ryzen 5, 16GB RAM, SSD</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card mb-3">
+                                                <div class="card-body">
+                                                    <h6>🎨 Edição de Imagens</h6>
+                                                    <p class="small">Ryzen 7, 32GB RAM, GTX 1650</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h5 class="mt-3">🎓 Competências</h5>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-primary">UC1: Montagem em escala</span>
+                                        <span class="badge bg-warning">UC2: Instalação massiva</span>
+                                        <span class="badge bg-success">UC3: Manutenção preventiva</span>
+                                    </div>
+
+                                    <h5 class="mt-3">⏱️ Duração</h5>
+                                    <p><strong>13 semanas</strong> de desenvolvimento completo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABA 3: PROBLEMÁTICA -->
+            <div class="tab-pane fade" id="problematica" role="tabpanel">
+                <div class="row fade-in">
+                    <div class="col-12">
+                        <h2 class="mb-4">🔍 Entendendo a Problemática</h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>💡 O que é uma Problemática?</h4>
+                            </div>
+                            <div class="card-body">
+                                <p class="lead">Uma problemática é uma situação-problema real ou simulada que requer solução integrada das competências das UCs 1, 2 e 3.</p>
+                                
+                                <h5 class="mt-4">✨ Características de uma boa problemática:</h5>
+                                <ul>
+                                    <li>✔️ Deve ser realista e refletir mercado de trabalho</li>
+                                    <li>✔️ Complexidade adequada ao prazo disponível</li>
+                                    <li>✔️ Requer integração de múltiplas competências</li>
+                                    <li>✔️ Resultado deve ser mensurável</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <h3 class="mb-3">📚 Exemplos de Problemáticas</h3>
+                    </div>
+                </div>
+
+                <!-- Exemplo 1: Laboratório Escolar -->
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5>🏫 Laboratório de Informática Escolar</h5>
+                                <p><strong>Descrição:</strong> Escola municipal com laboratório inoperante há 3 anos</p>
+                                <hr>
+                                <p><strong>Requisitos:</strong></p>
+                                <ul class="small">
+                                    <li>15 computadores robustos</li>
+                                    <li>Baixo custo</li>
+                                    <li>Fácil manutenção</li>
+                                </ul>
+                                <p><strong>Desafios:</strong></p>
+                                <ul class="small">
+                                    <li>Otimização orçamentária</li>
+                                    <li>Durabilidade</li>
+                                    <li>Segurança</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exemplo 2: Escritório Contábil -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5>💼 Escritório de Contabilidade com Segurança</h5>
+                                <p><strong>Descrição:</strong> Escritório com dados críticos e recente ataque ransomware</p>
+                                <hr>
+                                <p><strong>Requisitos:</strong></p>
+                                <ul class="small">
+                                    <li>Backup centralizado</li>
+                                    <li>Antivírus corporativo</li>
+                                    <li>Conformidade LGPD</li>
+                                </ul>
+                                <p><strong>Desafios:</strong></p>
+                                <ul class="small">
+                                    <li>Migração de dados</li>
+                                    <li>Testes de restore</li>
+                                    <li>Conformidade legal</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exemplo 3: Lan House -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5>🎮 Lan House Comunitária</h5>
+                                <p><strong>Descrição:</strong> ONG com recurso para montar 20 estações do zero</p>
+                                <hr>
+                                <p><strong>Requisitos:</strong></p>
+                                <ul class="small">
+                                    <li>20 computadores</li>
+                                    <li>1 servidor</li>
+                                    <li>Gerenciamento centralizado</li>
+                                </ul>
+                                <p><strong>Desafios:</strong></p>
+                                <ul class="small">
+                                    <li>Orçamento limitado</li>
+                                    <li>Uso intensivo</li>
+                                    <li>Durabilidade</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABA 4: SEQUÊNCIA DE DESENVOLVIMENTO -->
+            <div class="tab-pane fade" id="sequencia" role="tabpanel">
+                <div class="row fade-in">
+                    <div class="col-12">
+                        <h2 class="mb-4">📋 Sequência de Desenvolvimento (11 Etapas)</h2>
+                    </div>
+                </div>
+
+                <div class="accordion" id="etapasAccordion">
+                    <!-- Etapa 1 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#etapa1">
+                                <span class="emoji-icon">👥</span> Etapa 1: Constituição da Equipe
+                            </button>
+                        </h2>
+                        <div id="etapa1" class="accordion-collapse collapse show" data-bs-parent="#etapasAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Tarefas:</strong></p>
+                                <ul>
+                                    <li>Formação de grupos de 4-5 alunos</li>
+                                    <li>Definição de papéis (gerente, especialista hardware, software, documentação)</li>
+                                    <li>Planejamento de comunicação entre membros</li>
+                                </ul>
+                                <p><strong>UCs:</strong> <span class="badge bg-info">UC1, UC2, UC3</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Etapa 2 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#etapa2">
+                                <span class="emoji-icon">🔍</span> Etapa 2: Análise da Problemática
+                            </button>
+                        </h2>
+                        <div id="etapa2" class="accordion-collapse collapse" data-bs-parent="#etapasAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Tarefas:</strong></p>
+                                <ul>
+                                    <li>Leitura e interpretação do case/situação-problema</li>
+                                    <li>Identificação de requisitos explícitos e implícitos</li>
+                                    <li>Levantamento de dúvidas para docente/cliente</li>
+                                    <li>Análise do ambiente de trabalho</li>
+                                </ul>
+                                <p><strong>UCs:</strong> <span class="badge bg-info">UC1, UC2, UC3</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Etapa 3 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#etapa3">
+                                <span class="emoji-icon">📋</span> Etapa 3: Levantamento de Requisitos Técnicos
+                            </button>
+                        </h2>
+                        <div id="etapa3" class="accordion-collapse collapse" data-bs-parent="#etapasAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Tarefas:</strong></p>
+                                <ul>
+                                    <li>Especificações de hardware necessário</li>
+                                    <li>Requisitos funcionais e não funcionais</li>
+                                    <li>Software obrigatório e suas especificações mínimas</li>
+                                    <li>Análise de compatibilidade</li>
+                                </ul>
+                                <p><strong>UCs:</strong> <span class="badge bg-info">UC1, UC2</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Etapa 4 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#etapa4">
+                                <span class="emoji-icon">💰</span> Etapa 4: Pesquisa e Orçamento
+                            </button>
+                        </h2>
+                        <div id="etapa4" class="accordion-collapse collapse" data-bs-parent="#etapasAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Tarefas:</strong></p>
+                                <ul>
+                                    <li>Pesquisa de componentes em múltiplos fornecedores</li>
+                                    <li>Verificação de compatibilidade</li>
+                                    <li>Elaboração de orçamento detalhado</li>
+                                    <li>Análise de viabilidade financeira</li>
+                                </ul>
+                                <p><strong>UCs:</strong> <span class="badge bg-info">UC1</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Etapa 5 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#etapa5">
+                                <span class="emoji-icon">📅</span> Etapa 5: Planejamento Executivo
+                            </button>
+                        </h2>
+                        <div id="etapa5" class="accordion-collapse collapse" data-bs-parent="#etapasAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Tarefas:</strong></p>
+                                <ul>
+                                    <li>Estrutura Analítica do Projeto (EAP)</li>
+                                    <li>Cronograma com Diagrama de Gantt</li>
+                                    <li>Identificação de dependências</li>
+                                    <li>Análise de riscos e plano de contingência</li>
+                                </ul>
+                                <p><strong>UCs:</strong> <span class="badge bg-info">UC1, UC2</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Etapa 6 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#etapa6">
+                                <span class="emoji-icon">📦</span> Etapa 6: Aquisição e Inspeção
+                            </button>
+                        </h2>
+                        <div id="etapa6" class="accordion-collapse collapse" data-bs-parent="#etapasAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Tarefas:</strong></p>
+                                <ul>
+                                    <li>Compra de componentes</li>
+                                    <li>Recebimento e inspeção rigorosa</li>
+                                    <li>Verificação de compatibilidade</li>
+                                    <li>Organização de inventário</li>
+                                </ul>
+                                <p><strong>UCs:</strong> <span class="badge bg-info">UC1</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Etapa 7 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#etapa7">
+                                <span class="emoji-icon">🔧</span> Etapa 7: Preparação do Ambiente
+                            </button>
+                        </h2>
+                        <div id="etapa7" class="accordion-collapse collapse" data-bs-parent="#etapasAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Tarefas:</strong></p>
+                                <ul>
+                                    <li>Limpeza e preparação de bancada</li>
+                                    <li>Instalação de manta antiestática</li>
+                                    <li>Organização de ferramentas e instrumentos</li>
+                                    <li>Estudo completo de manuais de fabricantes</li>
+                                    <li>Implementação de medidas ESD</li>
+                                </ul>
+                                <p><strong>UCs:</strong> <span class="badge bg-info">UC1</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Etapa 8 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#etapa8">
+                                <span class="emoji-icon">🖥️</span> Etapa 8: Montagem de Hardware
+                            </button>
+                        </h2>
+                        <div id="etapa8" class="accordion-collapse collapse" data-bs-parent="#etapasAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Tarefas:</strong></p>
+                                <ul>
+                                    <li>Instalação de processador com pasta térmica</li>
+                                    <li>Instalação de memória RAM em Dual Channel</li>
+                                    <li>Fixação de armazenamento (SSD, HD)</li>
+                                    <li>Instalação de fonte e conexão de cabos</li>
+                                    <li>Conexão do painel frontal e periféricos</li>
+                                    <li>Organização de cabos internos</li>
+                                    <li>Testes POST e configuração BIOS</li>
+                                    <li>Inspeção visual e checklist de montagem</li>
+                                </ul>
+                                <p><strong>UCs:</strong> <span class="badge bg-info">UC1</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Etapa 9 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#etapa9">
+                                <span class="emoji-icon">💾</span> Etapa 9: Instalação de Software
+                            </button>
+                        </h2>
+                        <div id="etapa9" class="accordion-collapse collapse" data-bs-parent="#etapasAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Tarefas:</strong></p>
+                                <ul>
+                                    <li>Preparação de mídias de instalação</li>
+                                    <li>Particionamento e formatação de discos</li>
+                                    <li>Instalação de sistema operacional</li>
+                                    <li>Instalação de drivers (chipset, GPU, áudio, rede)</li>
+                                    <li>Atualização do SO via Windows Update</li>
+                                    <li>Instalação de firmware</li>
+                                    <li>Instalação de aplicativos essenciais</li>
+                                    <li>Configuração de segurança (antivírus, firewall)</li>
+                                </ul>
+                                <p><strong>UCs:</strong> <span class="badge bg-info">UC2</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Etapa 10 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#etapa10">
+                                <span class="emoji-icon">✅</span> Etapa 10: Testes e Validação
+                            </button>
+                        </h2>
+                        <div id="etapa10" class="accordion-collapse collapse" data-bs-parent="#etapasAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Tarefas:</strong></p>
+                                <ul>
+                                    <li>Testes de CPU (Prime95, AIDA64) - 2 horas</li>
+                                    <li>Testes de RAM (MemTest86) - overnight</li>
+                                    <li>Testes de disco (CrystalDiskMark)</li>
+                                    <li>Monitoramento de temperaturas</li>
+                                    <li>Testes de aplicativos e funcionalidade</li>
+                                    <li>Teste de inicialização (boot)</li>
+                                    <li>Validação por outro grupo (peer review)</li>
+                                    <li>Registro de não conformidades e ações corretivas</li>
+                                </ul>
+                                <p><strong>UCs:</strong> <span class="badge bg-info">UC3</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Etapa 11 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#etapa11">
+                                <span class="emoji-icon">📄</span> Etapa 11: Documentação e Apresentação
+                            </button>
+                        </h2>
+                        <div id="etapa11" class="accordion-collapse collapse" data-bs-parent="#etapasAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Tarefas:</strong></p>
+                                <ul>
+                                    <li>Elaboração de relatório técnico (50-100 páginas)</li>
+                                    <li>Planilha de custos detalhada</li>
+                                    <li>Manual de operação para usuários</li>
+                                    <li>Plano de manutenção preventiva</li>
+                                    <li>Registro fotográfico completo</li>
+                                    <li>Apresentação para avaliadores</li>
+                                    <li>Entrega formal com termo de aceite</li>
+                                </ul>
+                                <p><strong>UCs:</strong> <span class="badge bg-info">UC1, UC2, UC3</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABA 5: CHECKLIST INTERATIVO -->
+            <div class="tab-pane fade" id="checklist" role="tabpanel">
+                <div class="row fade-in">
+                    <div class="col-12">
+                        <h2 class="mb-4">✅ Checklist Interativo do Projeto</h2>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-8">
+                        <div class="progress-container">
+                            <h5>Progresso Geral</h5>
+                            <div class="progress" style="height: 30px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" id="progressBar" role="progressbar" style="width: 0%">0%</div>
+                            </div>
+                            <p class="mt-2" id="progressText">0 de 27 itens concluídos</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-custom w-100 mb-2" onclick="marcarTodos()">✅ Marcar Tudo</button>
+                        <button class="btn btn-outline-secondary w-100" onclick="limparTodos()">🔄 Limpar Tudo</button>
+                    </div>
+                </div>
+
+                <div id="checklistContainer">
+                    <!-- Planejamento -->
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h4>📋 Planejamento</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="plan1" data-fase="planejamento">
+                                <label for="plan1">Análise do cenário da empresa</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="plan2" data-fase="planejamento">
+                                <label for="plan2">Definição de necessidades e requisitos</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="plan3" data-fase="planejamento">
+                                <label for="plan3">Especificação técnica dos componentes</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="plan4" data-fase="planejamento">
+                                <label for="plan4">Orçamento e viabilidade</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="plan5" data-fase="planejamento">
+                                <label for="plan5">Cronograma de execução</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Montagem -->
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h4>🔧 Montagem</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="mont1" data-fase="montagem">
+                                <label for="mont1">Verificação de componentes e ferramentas</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="mont2" data-fase="montagem">
+                                <label for="mont2">Aplicação de medidas ESD (pulseira antiestática)</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="mont3" data-fase="montagem">
+                                <label for="mont3">Montagem física dos componentes</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="mont4" data-fase="montagem">
+                                <label for="mont4">Conexões de cabos e periféricos</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="mont5" data-fase="montagem">
+                                <label for="mont5">Configuração de BIOS/Setup</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="mont6" data-fase="montagem">
+                                <label for="mont6">Inspeção visual e checklist de montagem</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Instalação -->
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h4>💾 Instalação</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="inst1" data-fase="instalacao">
+                                <label for="inst1">Particionamento e formatação</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="inst2" data-fase="instalacao">
+                                <label for="inst2">Instalação do sistema operacional</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="inst3" data-fase="instalacao">
+                                <label for="inst3">Instalação de drivers e firmware</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="inst4" data-fase="instalacao">
+                                <label for="inst4">Instalação de aplicativos</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="inst5" data-fase="instalacao">
+                                <label for="inst5">Configuração de segurança</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testes -->
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h4>✅ Testes</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="test1" data-fase="testes">
+                                <label for="test1">Testes de hardware (POST, stress test)</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="test2" data-fase="testes">
+                                <label for="test2">Testes de software e aplicativos</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="test3" data-fase="testes">
+                                <label for="test3">Testes de funcionalidade</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="test4" data-fase="testes">
+                                <label for="test4">Validação com outro grupo (peer review)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documentação -->
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h4>📄 Documentação</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="doc1" data-fase="documentacao">
+                                <label for="doc1">Registro fotográfico do processo</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="doc2" data-fase="documentacao">
+                                <label for="doc2">Relatório técnico detalhado</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="doc3" data-fase="documentacao">
+                                <label for="doc3">Planilha de custos e recursos</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="doc4" data-fase="documentacao">
+                                <label for="doc4">Formulário de não conformidades</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Apresentação -->
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h4>🎤 Apresentação</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="apres1" data-fase="apresentacao">
+                                <label for="apres1">Preparação da apresentação</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="apres2" data-fase="apresentacao">
+                                <label for="apres2">Demonstração prática do funcionamento</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" class="checklist-checkbox" id="apres3" data-fase="apresentacao">
+                                <label for="apres3">Defesa técnica perante avaliadores</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABA 6: DICAS E BOAS PRÁTICAS -->
+            <div class="tab-pane fade" id="dicas" role="tabpanel">
+                <div class="row fade-in">
+                    <div class="col-12">
+                        <h2 class="mb-4">💡 Dicas e Boas Práticas</h2>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="search-box">
+                            <input type="text" class="form-control" id="searchDicas" placeholder="🔍 Buscar dicas por palavra-chave...">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Planejamento e Organização -->
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="mb-3">📊 Planejamento e Organização</h3>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="dica-card">
+                            <h5>🎯 Comece pelo fim</h5>
+                            <p>Visualize o produto final desejado antes de iniciar. Defina claramente os critérios de sucesso</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card">
+                            <h5>📌 Divida para conquistar</h5>
+                            <p>Decomponha o projeto em pacotes de trabalho menores e gerenciáveis</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card critica">
+                            <h5>📝 Documente conforme avança</h5>
+                            <p><strong>CRÍTICO:</strong> Não deixe toda documentação para o final. Registre cada etapa enquanto está fresca na memória</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card">
+                            <h5>📊 Mantenha um diário de bordo</h5>
+                            <p>Registre diariamente o que foi feito, dificuldades, soluções e pendências</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Montagem de Hardware -->
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="mb-3">🔧 Montagem de Hardware</h3>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="dica-card critica">
+                            <h5>📖 Sempre consulte manuais</h5>
+                            <p><strong>CRÍTICO:</strong> 5 minutos lendo o manual evitam 1 hora de troubleshooting</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card">
+                            <h5>🛠️ Organize componentes antes</h5>
+                            <p>Separe todos os componentes, ferramentas e materiais necessários</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card critica">
+                            <h5>🧪 Teste de bancada primeiro</h5>
+                            <p><strong>CRÍTICO:</strong> Instale CPU, RAM e cooler na placa. Faça POST antes de colocar no gabinete</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card critica">
+                            <h5>⚠️ Nunca force componentes</h5>
+                            <p><strong>CRÍTICO:</strong> Se não está encaixando, não force. Verifique orientação e compatibilidade</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card">
+                            <h5>🌀 Organize cabos adequadamente</h5>
+                            <p>Cabos organizados melhoram ventilação, reduzem temperatura e facilitam manutenção</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card">
+                            <h5>📸 Fotografe tudo</h5>
+                            <p>Tire fotos antes de desconectar cabos ou remover componentes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Instalação de Software -->
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="mb-3">💾 Instalação de Software</h3>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="dica-card critica">
+                            <h5>✔️ Verifique hash de arquivos ISO</h5>
+                            <p><strong>CRÍTICO:</strong> Verifique MD5/SHA256 para garantir integridade da imagem de SO</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card">
+                            <h5>💾 Crie imagem após configuração</h5>
+                            <p>Após instalar e configurar, crie imagem de backup para replicação</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card critica">
+                            <h5>🔐 Documente senhas em local seguro</h5>
+                            <p><strong>CRÍTICO:</strong> Mantenha registro de todas as senhas em local seguro e criptografado</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card">
+                            <h5>⚡ Desabilite bloatware</h5>
+                            <p>Desabilite programas e serviços pré-instalados desnecessários</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card critica">
+                            <h5>🔄 Configure backup cedo</h5>
+                            <p><strong>CRÍTICO:</strong> Configure backup logo após instalação, não espere acumular dados</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Segurança e Conformidade -->
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="mb-3">🔒 Segurança e Conformidade</h3>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="dica-card critica">
+                            <h5>⚡ Use pulseira antiestática</h5>
+                            <p><strong>CRÍTICO:</strong> Descarga eletrostática pode danificar componentes. Não é exagero</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card critica">
+                            <h5>🔌 Desconecte fonte antes de abrir</h5>
+                            <p><strong>CRÍTICO:</strong> Desconecte cabo de força antes de manipular componentes internos</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card">
+                            <h5>🥽 Use óculos de proteção</h5>
+                            <p>Ao usar ar comprimido para limpeza, proteja os olhos</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card critica">
+                            <h5>⚖️ Respeite legislação de software</h5>
+                            <p><strong>CRÍTICO:</strong> Use apenas software licenciado legalmente. Pirataria é crime</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card">
+                            <h5>♻️ Descarte corretamente resíduos</h5>
+                            <p>Encaminhe componentes eletrônicos para pontos de coleta de e-lixo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desenvolvimento Profissional -->
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="mb-3">🎓 Desenvolvimento Profissional</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="dica-card">
+                            <h5>🗂️ Construa portfólio</h5>
+                            <p>Documente todos os projetos. Portfólio é valioso em processos seletivos</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card">
+                            <h5>🎓 Tire certificações relevantes</h5>
+                            <p>CompTIA A+, Network+, Microsoft MCP são reconhecidas pelo mercado</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card">
+                            <h5>🌐 Participe de comunidades</h5>
+                            <p>Fóruns, grupos de Facebook, Discord são fontes valiosas de conhecimento</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card">
+                            <h5>📚 Atualize-se constantemente</h5>
+                            <p>Dedique tempo semanal para ler artigos, vídeos e fazer cursos</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dica-card">
+                            <h5>💬 Desenvolva soft skills</h5>
+                            <p>Comunicação, trabalho em equipe e pensamento crítico são essenciais</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABA 7: RESUMO EXECUTIVO -->
+            <div class="tab-pane fade" id="resumo" role="tabpanel">
+                <div class="row fade-in">
+                    <div class="col-12">
+                        <h2 class="mb-4">📊 Resumo Executivo</h2>
+                    </div>
+                </div>
+
+                <!-- Estatísticas -->
+                <div class="row mb-4">
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <div class="stats-card">
+                            <h3>11</h3>
+                            <p>Etapas de Desenvolvimento</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <div class="stats-card">
+                            <h3>27</h3>
+                            <p>Itens no Checklist</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <div class="stats-card">
+                            <h3>25+</h3>
+                            <p>Dicas Práticas</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <div class="stats-card">
+                            <h3>3</h3>
+                            <p>UCs Integradas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Componentes Recomendados -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>💻 Componentes Técnicos Recomendados</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Tipo de Estação</th>
+                                                <th>Processador</th>
+                                                <th>RAM</th>
+                                                <th>Armazenamento</th>
+                                                <th>Preço Estimado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>🏢 Entrada</strong><br><small>Recepção, Administrativo</small></td>
+                                                <td>Intel i3-10100 / Ryzen 3 5100</td>
+                                                <td>8GB DDR4</td>
+                                                <td>SSD 256GB</td>
+                                                <td>R$ 2.500</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>💼 Padrão</strong><br><small>Produção, Desenvolvimento</small></td>
+                                                <td>Intel i5-10400 / Ryzen 5 5500</td>
+                                                <td>16GB DDR4</td>
+                                                <td>SSD 512GB NVMe</td>
+                                                <td>R$ 3.800</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>🚀 Alta Performance</strong><br><small>Edição, 3D, CAD</small></td>
+                                                <td>Intel i7-10700 / Ryzen 7 5700X</td>
+                                                <td>32GB DDR4</td>
+                                                <td>SSD 1TB NVMe + 1TB SATA</td>
+                                                <td>R$ 6.500</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>🖥️ Servidor Local</strong><br><small>Backup, Armazenamento</small></td>
+                                                <td>Intel i5-10400 / Ryzen 5 5500</td>
+                                                <td>16GB DDR4 ECC</td>
+                                                <td>2x HD 4TB (RAID 1)</td>
+                                                <td>R$ 5.200</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rubrica de Avaliação -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>📝 Critérios de Avaliação</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5>🧠 Conhecimentos Técnicos (30%)</h5>
+                                                <ul>
+                                                    <li>Domínio de conceitos de hardware</li>
+                                                    <li>Compreensão de sistemas operacionais</li>
+                                                    <li>Aplicação correta de procedimentos</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5>🛠️ Habilidades Práticas (30%)</h5>
+                                                <ul>
+                                                    <li>Qualidade da montagem física</li>
+                                                    <li>Instalação e configuração adequadas</li>
+                                                    <li>Resolução de problemas</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5>📄 Documentação (20%)</h5>
+                                                <ul>
+                                                    <li>Qualidade e completude do relatório</li>
+                                                    <li>Clareza e organização</li>
+                                                    <li>Registro fotográfico</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5>🎤 Atitudes &amp; Apresentação (20%)</h5>
+                                                <ul>
+                                                    <li>Postura profissional</li>
+                                                    <li>Ética e trabalho em equipe</li>
+                                                    <li>Clareza na comunicação</li>
+                                                    <li>Domínio do conteúdo</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ações de Download -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>📥 Recursos Adicionais</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4 mb-2">
+                                        <button class="btn btn-custom w-100" onclick="imprimirResumo()">🖨️ Imprimir Resumo</button>
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <button class="btn btn-custom w-100" onclick="copiarConteudo()">📋 Copiar Conteúdo</button>
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <button class="btn btn-custom w-100" onclick="exportarChecklist()">📊 Exportar Checklist</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>💻 Projeto Integrador UC4</h5>
+                    <p>Montagem, Instalação e Manutenção de Computadores</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>📞 Contato</h5>
+                    <p>Email: contato@projetointegrador.edu.br<br>
+                    Telefone: (11) 1234-5678</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>🔗 Links Úteis</h5>
+                    <p>
+                        <a href="#" class="text-white" target="_blank">Material de Apoio</a><br>
+                        <a href="#" class="text-white" target="_blank">FAQ</a><br>
+                        <a href="#" class="text-white" target="_blank">Fórum de Discussão</a>
+                    </p>
+                </div>
+            </div>
+            <hr style="border-color: rgba(255,255,255,0.3);">
+            <div class="text-center">
+                <p>&copy; 2025 Projeto Integrador UC4. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const icon = darkModeToggle.querySelector('i');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('bi-moon-fill');
+                icon.classList.add('bi-sun-fill');
+            } else {
+                icon.classList.remove('bi-sun-fill');
+                icon.classList.add('bi-moon-fill');
+            }
+        });
+
+        // Checklist Functionality
+        let checklistData = {};
+        const totalItems = 27;
+
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('.checklist-checkbox');
+            let checkedCount = 0;
+            
+            checkboxes.forEach(checkbox => {
+                const item = checkbox.parentElement;
+                if (checkbox.checked) {
+                    checkedCount++;
+                    item.classList.add('checked');
+                    checklistData[checkbox.id] = true;
+                } else {
+                    item.classList.remove('checked');
+                    checklistData[checkbox.id] = false;
+                }
+            });
+            
+            const percentage = Math.round((checkedCount / totalItems) * 100);
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            
+            progressBar.style.width = percentage + '%';
+            progressBar.textContent = percentage + '%';
+            progressText.textContent = `${checkedCount} de ${totalItems} itens concluídos`;
+            
+            if (percentage === 100) {
+                showToast('🎉 Parabéns! Você completou todos os itens!', 'success');
+            }
+        }
+
+        function marcarTodos() {
+            const checkboxes = document.querySelectorAll('.checklist-checkbox');
+            checkboxes.forEach(checkbox => checkbox.checked = true);
+            updateProgress();
+            showToast('✅ Todos os itens foram marcados', 'info');
+        }
+
+        function limparTodos() {
+            const checkboxes = document.querySelectorAll('.checklist-checkbox');
+            checkboxes.forEach(checkbox => checkbox.checked = false);
+            updateProgress();
+            showToast('🔄 Checklist resetado', 'info');
+        }
+
+        // Toast Notification
+        function showToast(message, type = 'info') {
+            const toastContainer = document.querySelector('.toast-container');
+            const toastId = 'toast-' + Date.now();
+            
+            const bgClass = type === 'success' ? 'bg-success' : type === 'error' ? 'bg-danger' : 'bg-info';
+            
+            const toastHTML = `
+                <div id="${toastId}" class="toast align-items-center text-white ${bgClass} border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">${message}</div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                    </div>
+                </div>
+            `;
+            
+            toastContainer.insertAdjacentHTML('beforeend', toastHTML);
+            const toastElement = document.getElementById(toastId);
+            const toast = new bootstrap.Toast(toastElement, { delay: 3000 });
+            toast.show();
+            
+            toastElement.addEventListener('hidden.bs.toast', () => {
+                toastElement.remove();
+            });
+        }
+
+        // Search Dicas
+        const searchInput = document.getElementById('searchDicas');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const dicaCards = document.querySelectorAll('.dica-card');
+                
+                dicaCards.forEach(card => {
+                    const text = card.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // Print Resume
+        function imprimirResumo() {
+            window.print();
+            showToast('🖨️ Preparando impressão...', 'info');
+        }
+
+        // Copy Content
+        function copiarConteudo() {
+            const resumoTab = document.getElementById('resumo');
+            const text = resumoTab.innerText;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('📋 Conteúdo copiado para área de transferência!', 'success');
+            }).catch(() => {
+                showToast('❌ Erro ao copiar conteúdo', 'error');
+            });
+        }
+
+        // Export Checklist
+        function exportarChecklist() {
+            const checkboxes = document.querySelectorAll('.checklist-checkbox');
+            let csvContent = 'ID,Item,Status\n';
+            
+            checkboxes.forEach(checkbox => {
+                const label = checkbox.nextElementSibling.textContent;
+                const status = checkbox.checked ? 'Concluído' : 'Pendente';
+                csvContent += `${checkbox.id},"${label}",${status}\n`;
+            });
+            
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'checklist-projeto-integrador.csv';
+            a.click();
+            window.URL.revokeObjectURL(url);
+            
+            showToast('📊 Checklist exportado com sucesso!', 'success');
+        }
+
+        // Initialize checklist listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('.checklist-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgress);
+            });
+            updateProgress();
+            
+            // Add fade-in animation to tab content
+            const tabs = document.querySelectorAll('button[data-bs-toggle="tab"]');
+            tabs.forEach(tab => {
+                tab.addEventListener('shown.bs.tab', (e) => {
+                    const targetPane = document.querySelector(e.target.getAttribute('data-bs-target'));
+                    targetPane.classList.add('fade-in');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
